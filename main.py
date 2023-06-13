@@ -2,7 +2,6 @@ from lib.settings import BotSettings
 try:
     from discord.ext import commands
     import discord
-    import psutil
     import RPi.GPIO as GPIO
     import subprocess
 except Exception as e:
