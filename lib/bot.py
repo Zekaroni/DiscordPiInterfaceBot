@@ -35,8 +35,8 @@ class DiscordBot:
                     type=interactions.OptionType.BOOLEAN,
                     required=True,
                     choices=[
-                        interactions.Choice(name="Input", value=True),
-                        interactions.Choice(name="Output", value=False),
+                        interactions.Choice(name="input", value="Input"),
+                        interactions.Choice(name="output", value="Output"),
                     ],
                 ),
             ],
