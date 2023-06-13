@@ -2,12 +2,14 @@ import subprocess
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False) # Disables LOG saying some pins are active
 
 # TODO: Idea list
 # Add a way to visualize which pins are being used
 # Add a way to get  notified when a pin changes states from HIGH/LOW when it is INPUT
+# Add something that sets all volatages to low when bot first loads
 # 
-# 
+
 class Pin:
     def __init__(self) -> None:
         self.isActive = False
