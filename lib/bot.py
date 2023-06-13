@@ -30,16 +30,18 @@ class DiscordBot:
                     max_value=39,
                 ),
                 interactions.Option(
-                    name="input",
-                    description="True = Input, False = Output",
+                    name="ouput",
+                    description="True = Output, False = Input",
                     type=interactions.OptionType.BOOLEAN,
                     required=True,
                 ),
             ],
         )
-        async def setup_pin(ctx:interactions.CommandContext, pin_number: float, input: bool):
-            await ctx.send(f'{pin_number} : {type(pin_number)}')
-            return
+        async def setup_pin(ctx:interactions.CommandContext, pin_number: float, output: bool):
+            try:
+                raspPi.setup_pin(pin_number,output)
+            except Exception as error:
+                ctx.send(error)
 
         # @self.bot.command()
         # async def setup(ctx):

@@ -31,8 +31,6 @@ class Device:
         param pin_num: The number of the pin on the board
         param pin_out: True if you want pin output, False for pin input
         """
-        if pin_num < 0 or pin_num > 40:
-            raise ValueError("Enter a pin from 1-39")
         if pin_num not in self._banned_pins:
             if pin_num not in self._active_pins:
                 GPIO.setup(pin_num, GPIO.OUT if pin_out is True else GPIO.IN)
@@ -40,12 +38,10 @@ class Device:
             else:
                 raise ConnectionError(f"Pin {pin_num} is already active.")
         else:
-            raise PermissionError(f"Pin {pin_num} has been restricted by host, chose another pin.")
+            raise PermissionError(f"Pin {pin_num} has been restricted by host, choose another pin.")
         
 
     def set_pin_high(self,pin_num,pin_out) -> None:
-        if pin_num < 0 or pin_num > 40:
-            raise ("Invalid pin, enter a value 1-39")
         if  pin_num in self._banned_pins:
             raise("Pin {pin_num} has been restricted by host. Unable to turn it on.")
         if pin_num in self._active_pins:
