@@ -17,8 +17,8 @@ class DiscordBot:
         self.bot = interactions.Client(token=BotSettings().key)
 
         @self.bot.command(
-            name="activate_pin",
-            description="Activates the pin on the board to be ready for use",
+            name="setup_pin",
+            description="Sets up the pin on the board to be ready for use (Note: some are unavalible)",
             scope=active_guilds,
             options = [
                 interactions.Option(
@@ -28,6 +28,16 @@ class DiscordBot:
                     required=True,
                     min_value=1,
                     max_value=39,
+                ),
+                interactions.Option(
+                    name="flow",
+                    description="Input/Ouput",
+                    type=interactions.OptionType.BOOLEAN,
+                    required=True,
+                    choices=[
+                        interactions.Choice(name="Input", value=True),
+                        interactions.Choice(name="Output", value=False),
+                    ],
                 ),
             ],
         )
