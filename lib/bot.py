@@ -30,7 +30,7 @@ class DiscordBot:
                     max_value=39,
                 ),
                 interactions.Option(
-                    name="ouput",
+                    name="output",
                     description="True = Output, False = Input",
                     type=interactions.OptionType.BOOLEAN,
                     required=True,
