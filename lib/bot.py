@@ -7,7 +7,9 @@ import interactions
 raspPi = Device()
 
 active_guilds = [
+    # I know these should be private but like what can you really do with these lol
     949408545709908059,
+    546508789122334721,
 ]
 
 class DiscordBot:
@@ -95,10 +97,6 @@ class DiscordBot:
         )
         async def temps(ctx:interactions.CommandContext):
             await ctx.send(f"CPU temperature: {raspPi.get_cpu_temperature()}\nGPU temperature: {raspPi.get_gpu_temperature()}")
-
-        # @self.bot.command()
-        # async def temp(ctx):
-        #     await ctx.channel.send(f"CPU temperature is : {raspPi.get_cpu_temperature()}C\nGPU temperature is : {raspPi.get_gpu_temperature()}C")
 
     def start(self):
         self.bot.start()
