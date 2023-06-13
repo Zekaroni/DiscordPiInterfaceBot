@@ -59,7 +59,7 @@ class DiscordBot:
                 ),
             ],
         )
-        async def setup_pin(ctx:interactions.CommandContext, pin_number: int):
+        async def set_pin_high(ctx:interactions.CommandContext, pin_number: int):
             try:
                 raspPi.set_pin_high(pin_number)
                 await ctx.send(f"Pin {pin_number} is now outputting HIGH.")
