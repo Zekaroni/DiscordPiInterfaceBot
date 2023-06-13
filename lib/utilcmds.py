@@ -34,11 +34,14 @@ class Device:
         """
         if pin_num < 0 or pin_num > 40:
             raise ValueError("Enter a pin from 1-40")
-        if pin_num not in self._banned_pins and pin_num not in self._active_pins:
-            GPIO.setup(pin_num, GPIO.OUT if pin_out is True else GPIO.IN)
-            self._active_pins.append(pin_num)
+        if pin_num not in self._banned_pins:
+            if pin_num not in self._active_pins:
+                GPIO.setup(pin_num, GPIO.OUT if pin_out is True else GPIO.IN)
+                self._active_pins.append(pin_num)
+            else:
+                raise ConnectionError(f"Pin {pin_num} is already active.")
         else:
-            raise PermissionError(f"Pin {pin_num} has been locked by host.")
+            raise PermissionError(f"Pin {pin_num} has been restricted by host, chose another pin.")
 
     @staticmethod
     def get_cpu_temperature() -> float:

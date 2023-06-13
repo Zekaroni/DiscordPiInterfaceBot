@@ -27,10 +27,10 @@ class DiscordBot:
                 else:
                     await ctx.channel.send(e)
 
-        # @self.botbot.command()
-        # async def on(ctx):
-        #     GPIO.output(led_pin, GPIO.HIGH)
-        #     await ctx.channel.send('LED turned on.')
+        @self.botbot.command()
+        async def on(ctx):
+            GPIO.output(led_pin, GPIO.HIGH)
+            await ctx.channel.send('LED turned on.')
 
         # @self.bot.command()
         # async def off(ctx):
