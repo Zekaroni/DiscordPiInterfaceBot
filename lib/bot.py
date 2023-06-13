@@ -24,7 +24,7 @@ class DiscordBot:
                 interactions.Option(
                     name="pin_number",
                     description="Pin number from 1-39",
-                    type=interactions.OptionType.NUMBER,
+                    type=interactions.OptionType.INTEGER,
                     required=True,
                     min_value=1,
                     max_value=39,
@@ -37,7 +37,7 @@ class DiscordBot:
                 ),
             ],
         )
-        async def setup_pin(ctx:interactions.CommandContext, pin_number: float, output: bool):
+        async def setup_pin(ctx:interactions.CommandContext, pin_number: int, output: bool):
             try:
                 raspPi.setup_pin(pin_number,output)
             except Exception as error:
