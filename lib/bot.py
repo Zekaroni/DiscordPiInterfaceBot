@@ -37,7 +37,7 @@ class DiscordBot:
                 ),
             ],
         )
-        async def ping(ctx:interactions.CommandContext, pin_number: float):
+        async def setup_pin(ctx:interactions.CommandContext, pin_number: float, input: bool):
             await ctx.send(f'{pin_number} : {type(pin_number)}')
             return
 
