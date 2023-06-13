@@ -20,11 +20,12 @@ class DiscordBot:
             try:
                 pin_num, output = ctx.message.content.split(" ")[1:]
                 raspPi.setup_pin((int(pin_num)),bool(output.capitalize()))
+                await ctx.channel.send(f"Pin {pin_num} was set up.")
             except Exception as e:
                 if e == TypeError:
-                    ctx.channel.send("Invalid agrument use `>setup <enter pin num 1-40 here> <true|false>`")
+                    await ctx.channel.send("Invalid agrument use `>setup <enter pin num 1-40 here> <true|false>`")
                 else:
-                    ctx.channel.send(e)
+                    await ctx.channel.send(e)
 
         # @self.botbot.command()
         # async def on(ctx):
