@@ -1,10 +1,14 @@
 from lib.settings import BotSettings
-
-from discord.ext import commands
-import discord
-import psutil
-import RPi.GPIO as GPIO
-import subprocess
+try:
+    from discord.ext import commands
+    import discord
+    import psutil
+    import RPi.GPIO as GPIO
+    import subprocess
+except Exception as e:
+    print(e)
+    print("Check to make sure .venv is active")
+    exit()
 
 led_pin = 11
 
