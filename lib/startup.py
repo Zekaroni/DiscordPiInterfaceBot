@@ -14,7 +14,7 @@ def init_packages():
         try:
             from os import system
             system("cd .venv/bin")
-            system("activate")
+            system("source activate")
             system("cd ../..")
             IMPORT()
         except Exception:
