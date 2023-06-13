@@ -52,8 +52,8 @@ class Device:
             if not self.pins[pin_index].isActive:
 
                 # Enables the pin to be accesed by the GPIO API
-                GPIO.setup(pin_num, GPIO.OUT if pin_out is True else GPIO.IN)
-                self.pins[pin_index]
+                GPIO.setup(pin_num, (GPIO.OUT if pin_out else GPIO.IN))
+                self.pins[pin_index].isActive = True
 
             else:
                 raise ConnectionError(f"Pin {pin_num} is already active.")
