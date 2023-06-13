@@ -17,13 +17,13 @@ class DiscordBot:
         self.bot = interactions.Client(token=BotSettings().key)
 
         @self.bot.command(
-            name="say_something",
-            description="say something!",
+            name="pin",
+            description="Gets Pin Value",
             scope=active_guilds,
             options = [
                 interactions.Option(
-                    name="pinNumber",
-                    description="What you want to say",
+                    name="pin_number",
+                    description="Pin number from 1-39",
                     type=interactions.OptionType.NUMBER,
                     required=True,
                 ),
