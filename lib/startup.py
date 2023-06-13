@@ -1,5 +1,5 @@
 def init_packages():
-    from settings import BotSettings
+    from lib.settings import BotSettings
 
     def IMPORT():
         from discord.ext import commands
