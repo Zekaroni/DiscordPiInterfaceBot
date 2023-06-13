@@ -6,7 +6,6 @@ GPIO.setmode(GPIO.BOARD)
 class Device:
     def __init__(self):
         self._active_pins = [] # For pins that get activated
-
         self._banned_pins = [
             3,    # Pull-up resistor, input
             5,    # Pull-up resistor, input
@@ -23,8 +22,9 @@ class Device:
             35,   # Reserved
             37,   # Reserved
             38,   # Reserved
-            40,   # Reserved
+            40,   # Reserved, imposible to index with bot
         ]
+        self._watched_pins = [] # Used for keeping track of current pins being "watched" : See watch_pin
 
     def setup_pin(self, pin_num, pin_out) -> None:
         """
