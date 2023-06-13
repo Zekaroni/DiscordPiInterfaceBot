@@ -87,6 +87,14 @@ class DiscordBot:
                 await ctx.send(f"Pin {pin_number} is now LOW.")
             except Exception as error:
                 await ctx.send(f"{error}")
+        
+        @self.bot.command(
+            name="temps",
+            description="Sends a message containing current temperatures of the Pi",
+            scope=active_guilds,
+        )
+        async def temps(ctx:interactions.CommandContext):
+            await ctx.send(f"CPU temperature: {raspPi.get_cpu_temperature()}\nGPU temperature: {raspPi.get_gpu_temperature()}")
 
         # @self.bot.command()
         # async def temp(ctx):
