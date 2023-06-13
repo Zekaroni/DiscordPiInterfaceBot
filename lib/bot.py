@@ -38,10 +38,11 @@ class DiscordBot:
             ],
         )
         async def setup_pin(ctx:interactions.CommandContext, pin_number: int, output: bool):
-            try:
-                raspPi.setup_pin(pin_number,output)
-            except Exception as error:
-                await ctx.send(error)
+            # try:
+            #     raspPi.setup_pin(pin_number,output)
+            ctx.send(f"Pin {pin_number} is now setup.")
+            # except Exception as error:
+            #     await ctx.send(error)
 
         # @self.bot.command()
         # async def setup(ctx):
