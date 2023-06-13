@@ -41,7 +41,7 @@ class DiscordBot:
             try:
                 raspPi.setup_pin(pin_number,output)
             except Exception as error:
-                ctx.send(error)
+                await ctx.send(error)
 
         # @self.bot.command()
         # async def setup(ctx):
