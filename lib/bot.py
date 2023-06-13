@@ -42,7 +42,7 @@ class DiscordBot:
                 raspPi.setup_pin(pin_number,output)
                 await ctx.send(f"Pin {pin_number} is now setup.")
             except Exception as error:
-                await ctx.send(error)
+                await ctx.send(f"{error}")
 
         @self.bot.command(
             name="set_pin_high",
@@ -64,7 +64,7 @@ class DiscordBot:
                 raspPi.set_pin_high(pin_number)
                 await ctx.send(f"Pin {pin_number} is now outputting HIGH.")
             except Exception as error:
-                await ctx.send(error)
+                await ctx.send(f"{error}")
 
         # @self.bot.command()
         # async def enable(ctx):
