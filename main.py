@@ -1,8 +1,10 @@
-from lib.startup import init_packages
+from lib.settings import BotSettings
 
-init_packages()
-del init_packages
-
+from discord.ext import commands
+import discord
+import psutil
+import RPi.GPIO as GPIO
+import subprocess
 
 led_pin = 11
 
