@@ -30,13 +30,12 @@ class DiscordBot:
                     max_value=39,
                 ),
                 interactions.Option(
-                    name="flow",
+                    name="input",
                     description="Input/Ouput",
-                    type=interactions.OptionType.BOOLEAN,
                     required=True,
                     choices=[
-                        interactions.Choice(name="input", value="Input"),
-                        interactions.Choice(name="output", value="Output"),
+                        interactions.Choice(name="input", value=True),
+                        interactions.Choice(name="output", value=False),
                     ],
                 ),
             ],
