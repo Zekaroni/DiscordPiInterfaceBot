@@ -1,4 +1,5 @@
-settings.py
+lib/__pycache__
 lib/settings.py
 .venv
 .vscode
+test.py
