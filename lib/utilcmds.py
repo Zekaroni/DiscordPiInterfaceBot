@@ -61,12 +61,12 @@ class Device:
             raise PermissionError(f"Pin {pin_num} has been restricted by host, choose another pin.")
         
 
-    def set_pin_high(self,pin_num,pin_out) -> None:
-        if  pin_num in self._banned_pins:
+    def set_pin_high(self,pin_num) -> None:
+        pin_index = pin_num-1
+        if self.pins[pin_index].isBanned:
             raise("Pin {pin_num} has been restricted by host. Unable to turn it on.")
-        if pin_num in self._active_pins:
-            GPIO.setup(pin_num, GPIO.OUT if pin_out is True else GPIO.IN)
-            self._active_pins.append(pin_num)
+        if self.pins[pin_index].isActive:
+            GPIO.output(pin_num, GPIO.HIGH)
         else:
             raise ("Pin has not been setup.")
         
