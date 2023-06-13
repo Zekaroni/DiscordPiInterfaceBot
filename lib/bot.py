@@ -38,24 +38,33 @@ class DiscordBot:
             ],
         )
         async def setup_pin(ctx:interactions.CommandContext, pin_number: int, output: bool):
-            # try:
-            raspPi.setup_pin(pin_number,output)
-            await ctx.send(f"Pin {pin_number} is now setup.")
-            # except Exception as error:
-            #     await ctx.send(error)
+            try:
+                raspPi.setup_pin(pin_number,output)
+                await ctx.send(f"Pin {pin_number} is now setup.")
+            except Exception as error:
+                await ctx.send(error)
 
-        # @self.bot.command()
-        # async def setup(ctx):
-        #     try:
-        #         pin_num, output = ctx.message.content.split(" ")[1:]
-        #         raspPi.setup_pin((int(pin_num)),bool(output.capitalize()))
-        #         # TODO: Allow for true|false and in|out
-        #         await ctx.channel.send(f"Pin {pin_num} was set up.")
-        #     except Exception as e:
-        #         if e == TypeError:
-        #             await ctx.channel.send("Invalid agrument use `>setup <enter pin num 1-40 here> <true|false>`")
-        #         else:
-        #             await ctx.channel.send(e)
+        @self.bot.command(
+            name="set_pin_high",
+            description="Sets up the pin on the board to be ready for use (Note: some are unavalible)",
+            scope=active_guilds,
+            options = [
+                interactions.Option(
+                    name="pin_number",
+                    description="Pin number from 1-39",
+                    type=interactions.OptionType.INTEGER,
+                    required=True,
+                    min_value=1,
+                    max_value=39,
+                ),
+            ],
+        )
+        async def setup_pin(ctx:interactions.CommandContext, pin_number: int):
+            try:
+                raspPi.set_pin_high(pin_number)
+                await ctx.send(f"Pin {pin_number} is now outputting HIGH.")
+            except Exception as error:
+                await ctx.send(error)
 
         # @self.bot.command()
         # async def enable(ctx):
