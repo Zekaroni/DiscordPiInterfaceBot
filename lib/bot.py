@@ -46,7 +46,7 @@ class DiscordBot:
 
         @self.bot.command(
             name="set_pin_high",
-            description="Sets up the pin on the board to be ready for use (Note: some are unavalible)",
+            description="Sets the volatage to HIGH on the pin specified",
             scope=active_guilds,
             options = [
                 interactions.Option(
@@ -62,14 +62,31 @@ class DiscordBot:
         async def set_pin_high(ctx:interactions.CommandContext, pin_number: int):
             try:
                 raspPi.set_pin_high(pin_number)
-                await ctx.send(f"Pin {pin_number} is now outputting HIGH.")
+                await ctx.send(f"Pin {pin_number} is now HIGH.")
             except Exception as error:
                 await ctx.send(f"{error}")
 
-        # @self.bot.command()
-        # async def enable(ctx):
-        #     raspPi.setup_pin
-        #     await ctx.channel.send('LED turned on.')
+        @self.bot.command(
+            name="set_pin_low",
+            description="Pulls the voltage low on opin specified",
+            scope=active_guilds,
+            options = [
+                interactions.Option(
+                    name="pin_number",
+                    description="Pin number from 1-39",
+                    type=interactions.OptionType.INTEGER,
+                    required=True,
+                    min_value=1,
+                    max_value=39,
+                ),
+            ],
+        )
+        async def set_pin_low(ctx:interactions.CommandContext, pin_number: int):
+            try:
+                raspPi.set_pin_low(pin_number)
+                await ctx.send(f"Pin {pin_number} is now LOW.")
+            except Exception as error:
+                await ctx.send(f"{error}")
 
         # @self.bot.command()
         # async def temp(ctx):
