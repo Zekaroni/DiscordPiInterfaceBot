@@ -60,11 +60,11 @@ class DiscordBot:
             ],
         )
         async def set_pin_high(ctx:interactions.CommandContext, pin_number: int):
-            # try:
-            raspPi.set_pin_high(pin_number)
-            await ctx.send(f"Pin {pin_number} is now outputting HIGH.")
-            # except Exception as error:
-            #     await ctx.send(f"{error}")
+            try:
+                raspPi.set_pin_high(pin_number)
+                await ctx.send(f"Pin {pin_number} is now outputting HIGH.")
+            except Exception as error:
+                await ctx.send(f"{error}")
 
         # @self.bot.command()
         # async def enable(ctx):
