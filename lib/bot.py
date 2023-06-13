@@ -20,6 +20,7 @@ class DiscordBot:
             try:
                 pin_num, output = ctx.message.content.split(" ")[1:]
                 raspPi.setup_pin((int(pin_num)),bool(output.capitalize()))
+                # TODO: Allow for true|false and in|out
                 await ctx.channel.send(f"Pin {pin_num} was set up.")
             except Exception as e:
                 if e == TypeError:
@@ -27,15 +28,10 @@ class DiscordBot:
                 else:
                     await ctx.channel.send(e)
 
-        @self.botbot.command()
-        async def on(ctx):
-            GPIO.output(led_pin, GPIO.HIGH)
+        @self.bot.command()
+        async def enable(ctx):
+            raspPi.setup_pin
             await ctx.channel.send('LED turned on.')
-
-        # @self.bot.command()
-        # async def off(ctx):
-        #     GPIO.output(led_pin, GPIO.LOW)
-        #     await ctx.channel.send('LED turned off.')
 
         @self.bot.command()
         async def temp(ctx):

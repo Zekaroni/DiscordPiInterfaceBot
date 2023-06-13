@@ -1,3 +1,4 @@
 settings.py
 lib/settings.py
 .venv
+.vscode
