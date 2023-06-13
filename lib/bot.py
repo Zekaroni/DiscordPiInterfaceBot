@@ -18,7 +18,7 @@ class DiscordBot:
         @self.bot.command()
         async def setup(ctx):
             try:
-                pin_num, output = ctx.message.content.split(" ")
+                pin_num, output = ctx.message.content.split(" ")[:2]
                 raspPi.setup_pin((int(pin_num)),bool(output.capitalize()))
             except TypeError:
                 ctx.channel.send("Invalid argument")
