@@ -17,8 +17,8 @@ class DiscordBot:
         self.bot = interactions.Client(token=BotSettings().key)
 
         @self.bot.command(
-            name="pin",
-            description="Gets Pin Value",
+            name="activate_pin",
+            description="Activates the pin on the board to be ready for use",
             scope=active_guilds,
             options = [
                 interactions.Option(
@@ -26,6 +26,8 @@ class DiscordBot:
                     description="Pin number from 1-39",
                     type=interactions.OptionType.NUMBER,
                     required=True,
+                    min_value=1,
+                    max_value=39,
                 ),
             ],
         )
