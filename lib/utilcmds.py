@@ -72,7 +72,7 @@ class Device:
         else:
             raise ConnectionError("Pin has not been setup.")
 
-    def set_pin_high(self,pin_num) -> None:
+    def set_pin_low(self,pin_num) -> None:
         pin_index = pin_num-1
         if self.pins[pin_index].isBanned:
             raise PermissionError("Pin {pin_num} has been restricted by host. Unable to turn it on.")
