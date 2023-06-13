@@ -1,4 +1,4 @@
-cd venv/bin
+cd .venv/bin
 source ./activate
 cd ../..
 clear
