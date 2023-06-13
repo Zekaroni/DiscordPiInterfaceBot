@@ -3,12 +3,24 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
 
+# TODO: Idea list
+# Add a way to visualize which pins are being used
+# Add a way to get  notified when a pin changes states from HIGH/LOW when it is INPUT
+# 
+# 
+class Pin:
+    def __init__(self) -> None:
+        self.isActive = False
+        self.isBanned = False
+        self.isWatched = False
+
+
 class Device:
     def __init__(self):
-        self._active_pins = [] # For pins that get activated
+        self.pins = []
         self._banned_pins = [
-            3,    # Pull-up resistor, input
-            5,    # Pull-up resistor, input
+            3,    # Pull-up resistor, can be used for input
+            5,    # Pull-up resistor, can be used for input
             13,   # Reserved
             19,   # Reserved
             21,   # Reserved
@@ -24,17 +36,25 @@ class Device:
             38,   # Reserved
             40,   # Reserved, imposible to index with bot
         ]
-        self._watched_pins = [] # Used for keeping track of current pins being "watched" : See watch_pin
+
+        for i in range(40):
+            self.pins.append(Pin())
+            if (i+1) in self._banned_pins:
+                self.pins[i].isBanned = True
 
     def setup_pin(self, pin_num, pin_out) -> None:
         """
         param pin_num: The number of the pin on the board
         param pin_out: True if you want pin output, False for pin input
         """
-        if pin_num not in self._banned_pins:
-            if pin_num not in self._active_pins:
+        pin_index = pin_num-1
+        if not self.pins[pin_index].isBanned:
+            if not self.pins[pin_index].isActive:
+
+                # Enables the pin to be accesed by the GPIO API
                 GPIO.setup(pin_num, GPIO.OUT if pin_out is True else GPIO.IN)
-                self._active_pins.append(pin_num)
+                self.pins[pin_index]
+
             else:
                 raise ConnectionError(f"Pin {pin_num} is already active.")
         else:
