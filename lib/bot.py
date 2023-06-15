@@ -99,7 +99,7 @@ class DiscordBot:
         )
         async def temps(ctx: interactions.CommandContext):
             await ctx.send(f"CPU temperature: {raspPi.get_cpu_temperature()}\nGPU temperature: {raspPi.get_gpu_temperature()}")
-            await command_send(ctx, "Below is a file.", files=interactions.File("requirements.txt"))
+            # await command_send(ctx, "Below is a file.", files=interactions.File("requirements.txt")) # Saving this to add file sharing later
 
     def start(self):
         self.bot.start()
