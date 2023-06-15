@@ -1,7 +1,7 @@
 import os
 
 def install_venv():    
-    os.system("bash initsetup.sh")
+    os.system("bash ./src/initsetup.sh")
 
 if __name__ == "__main__":
     if os.path.exists("./.venv"):
