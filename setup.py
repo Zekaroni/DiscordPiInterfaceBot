@@ -37,6 +37,7 @@ if __name__ == "__main__":
             channel = input("Enter the main channel/guild id you would like this bot to access: ")
             setup_settings(key, channel)
             
+            # TODO: get this working to automatically activate the venv, I cant be bothered rn, too tired
             # subprocess.run("source .venv/bin/activate", shell=True)
             # os.system("cd ../..")
             # exit()
