@@ -23,13 +23,15 @@ if __name__ == "__main__":
               "\npip install -r requirements.txt"
         )
     else:
-        if input("A virtual enviornment was not found. Would you like to create one? (y|n)").lower() != 'y':
+        if input("A virtual enviornment was not found. Would you like to create one? (y|n): ").lower() != 'y':
             print("You will now need to install the packages manually. You can do this by running:"
                 "\npip install -r requirements.txt"
                 "\nNote that this will install the packages to your main instance of Python."
             )
         else:
+            print("This will take a little bit. Now creating virtual enviornment and installing packages.")
             install_venv()
+            print("These next prompts are for settings, please refer to the docs to see what you need for these.\n")
             key = input("Enter the bot key: ")
             channel = input("Enter the main channel/guild id you would like this bot to access: ")
             setup_settings(key, channel)
