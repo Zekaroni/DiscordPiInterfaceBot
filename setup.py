@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 def install_venv():    
     os.system("bash ./src/initsetup.sh")
@@ -34,6 +35,6 @@ if __name__ == "__main__":
             print("These next prompts are for settings, please refer to the docs to see what you need for these.\n")
             key = input("Enter the bot key: ")
             channel = input("Enter the main channel/guild id you would like this bot to access: ")
-            setup_settings(key, channel)
-            os.system("source ./src/setvenv.sh")
+            setup_settings(key, channel)    
+            subprocess.run(["source", "./src/setvenv.sh"], shell=True)
             exit()
