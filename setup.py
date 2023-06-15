@@ -37,5 +37,6 @@ if __name__ == "__main__":
             channel = input("Enter the main channel/guild id you would like this bot to access: ")
             setup_settings(key, channel)
             
-            subprocess.run("cd .venv/bin && source ./activate && cd ../..", shell=True)
+            subprocess.run("source .venv/bin/activate", shell=True)
+            os.system("cd ../..")
             exit()
