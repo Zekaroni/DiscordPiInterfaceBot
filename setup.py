@@ -32,9 +32,10 @@ if __name__ == "__main__":
         else:
             print("This will take a little bit. Now creating virtual enviornment and installing packages.")
             install_venv()
-            print("These next prompts are for settings, please refer to the docs to see what you need for these.\n")
+            print("\n\nThese next prompts are for settings, please refer to the docs to see what you need for these.\n")
             key = input("Enter the bot key: ")
             channel = input("Enter the main channel/guild id you would like this bot to access: ")
-            setup_settings(key, channel)    
-            subprocess.run(["source", "./src/setvenv.sh"], shell=True)
+            setup_settings(key, channel)
+            
+            subprocess.run(["source", "cd .venv/bin && ./activate && cd ../.."], shell=True)
             exit()
