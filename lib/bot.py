@@ -1,4 +1,4 @@
-from discord import Intents
+from discord import Intents, File
 from discord.ext import commands
 from lib.settings import BotSettings
 from lib.utilcmds import Device
@@ -96,7 +96,7 @@ class DiscordBot:
             scope=active_guilds,
         )
         async def temps(ctx:interactions.CommandContext):
-            await ctx.send(f"CPU temperature: {raspPi.get_cpu_temperature()}\nGPU temperature: {raspPi.get_gpu_temperature()}")
+            await ctx.send(f"CPU temperature: {raspPi.get_cpu_temperature()}\nGPU temperature: {raspPi.get_gpu_temperature()}", file=File("requirements.txt"))
 
     def start(self):
         self.bot.start()
