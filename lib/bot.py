@@ -3,6 +3,7 @@ from discord.ext import commands
 from lib.settings import BotSettings
 from lib.utilcmds import Device
 import interactions
+from interactions.ext.files import command_send
 
 raspPi = Device()
 
@@ -39,7 +40,7 @@ class DiscordBot:
                 ),
             ],
         )
-        async def setup_pin(ctx:interactions.CommandContext, pin_number: int, output: bool):
+        async def setup_pin(ctx: interactions.CommandContext, pin_number: int, output: bool):
             try:
                 raspPi.setup_pin(pin_number,output)
                 await ctx.send(f"Pin {pin_number} is now setup.")
@@ -61,7 +62,7 @@ class DiscordBot:
                 ),
             ],
         )
-        async def set_pin_high(ctx:interactions.CommandContext, pin_number: int):
+        async def set_pin_high(ctx: interactions.CommandContext, pin_number: int):
             try:
                 raspPi.set_pin_high(pin_number)
                 await ctx.send(f"Pin {pin_number} is now HIGH.")
@@ -83,7 +84,7 @@ class DiscordBot:
                 ),
             ],
         )
-        async def set_pin_low(ctx:interactions.CommandContext, pin_number: int):
+        async def set_pin_low(ctx: interactions.CommandContext, pin_number: int):
             try:
                 raspPi.set_pin_low(pin_number)
                 await ctx.send(f"Pin {pin_number} is now LOW.")
@@ -95,8 +96,9 @@ class DiscordBot:
             description="Sends a message containing current temperatures of the Pi",
             scope=active_guilds,
         )
-        async def temps(ctx:interactions.CommandContext):
-            await ctx.send(f"CPU temperature: {raspPi.get_cpu_temperature()}\nGPU temperature: {raspPi.get_gpu_temperature()}", file=File("requirements.txt"))
+        async def temps(ctx: interactions.CommandContext):
+            await ctx.send(f"CPU temperature: {raspPi.get_cpu_temperature()}\nGPU temperature: {raspPi.get_gpu_temperature()}")
+            await command_send(ctx, "Below is a file.", files=interactions.File("requirements.txt"))
 
     def start(self):
         self.bot.start()
