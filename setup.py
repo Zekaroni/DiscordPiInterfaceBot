@@ -8,7 +8,7 @@ def setup_settings(bot_key,guild):
         settings_file.write(
             "class BotSettings:\n"
             "    def __init__(self):\n"
-            f"        self.key = {bot_key.strip()}\n"
+            f"        self.key = \"{bot_key.strip()}\"\n"
             "        self.guilds = [\n"
             "            # Put the ids of the servers you wish to access this bot in here\n"
             f"            {guild},\n"
