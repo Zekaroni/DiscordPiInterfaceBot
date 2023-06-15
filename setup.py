@@ -3,6 +3,18 @@ import os
 def install_venv():    
     os.system("bash ./src/initsetup.sh")
 
+def setup_settings(bot_key,guild):
+    with open("./lib/settings.py", "w") as settings_file:
+        settings_file.write(
+            "class BotSettings:\n"
+            "    def __init__(self):\n"
+            f"        self.key = {bot_key.strip()}\n"
+            "        self.guilds = [\n"
+            "            # Put the ids of the servers you wish to access this bot in here\n"
+            f"            {guild},\n"
+            "        ]\n"
+        )
+
 if __name__ == "__main__":
     if os.path.exists("./.venv"):
         print("A virtual enviornment was already found. Activate it using:"
@@ -18,3 +30,8 @@ if __name__ == "__main__":
             )
         else:
             install_venv()
+            key = input("Enter the bot key: ")
+            channel = input("Enter the main channel/guild id you would like this bot to access: ")
+            setup_settings(key, channel)
+            os.system("source ./src/setvenv.sh")
+            exit()
