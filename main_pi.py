@@ -27,7 +27,7 @@ try:
     # Close the serial port
     serial_port.close()
     print("Serial connection closed.")
-except serial.SerialException as e:
+except Exception as e:
     print("Serial connection failed:", str(e))
 finally:
     # Clean up the GPIO pins
