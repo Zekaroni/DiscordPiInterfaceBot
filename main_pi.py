@@ -1,14 +1,13 @@
 import serial
+import time
 
-try:
-    # Create a serial object with the appropriate port and baud rate settings
-    ser = serial.Serial('/dev/serial1', 9600)
+serial_port = '/dev/serial1' 
+baud_rate = 9600
 
-    # Send a byte of data to the Arduino
-    data_byte = b'\x41'  # Byte value to send
-    ser.write(data_byte)
+ser = serial.Serial(serial_port, baud_rate, timeout=1)
 
-    # Close the serial connection
-    ser.close()
-except Exception as e:
-    print("Serial communication error:", str(e))
+time.sleep(2)
+
+ser.write('H'.encode())
+
+ser.close()
