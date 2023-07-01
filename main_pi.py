@@ -12,7 +12,7 @@ GPIO.setup(rx_pin, GPIO.IN)
 GPIO.setup(tx_pin, GPIO.OUT)
 
 # Define the serial port and baud rate
-serial_port = serial.Serial(port='/dev/ttyS0', baudrate=9600)
+serial_port = serial.Serial(port='/dev/serial1', baudrate=9600)
 
 try:
     # Open the serial port
