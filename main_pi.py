@@ -1,35 +1,23 @@
-import serial
 import RPi.GPIO as GPIO
+import time
 
+# Set up GPIO mode
 GPIO.setmode(GPIO.BOARD)
 
-# Define the software serial pins
-rx_pin = 11
-tx_pin = 13
+# Define the GPIO pin (using physical pin numbers)
+gpio_pin = 11  # Pin 11 (GPIO17)
 
-# Set up the GPIO pins
-GPIO.setup(rx_pin, GPIO.IN)
-GPIO.setup(tx_pin, GPIO.OUT)
+# Set up the GPIO pin
+GPIO.setup(gpio_pin, GPIO.OUT)
 
-# Define the serial port and baud rate
-serial_port = serial.Serial(port='/dev/serial1', baudrate=9600)
+# Send data to Arduino
+data = b'H'
 
-try:
-    # Open the serial port
-    serial_port.open()
-    print("Serial connection established!")
+# Send each bit of the data sequentially
+for bit in data:
+    for i in range(8):
+        GPIO.output(gpio_pin, bit & (1 << i))
+        time.sleep(0.01)  # Adjust the delay as needed
 
-    # Send data to Arduino
-    data = 'H'
-    serial_port.write(data.encode())
-    print("Data sent to Arduino:", data)
-
-    # Close the serial port
-    serial_port.close()
-    print("Serial connection closed.")
-except Exception as e:
-    print("Serial connection failed:", str(e))
-finally:
-    # Clean up the GPIO pins
-    GPIO.cleanup()
-
+# Clean up the GPIO pin
+GPIO.cleanup()
