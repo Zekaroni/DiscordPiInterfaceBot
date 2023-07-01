@@ -32,3 +32,4 @@ except Exception as e:
 finally:
     # Clean up the GPIO pins
     GPIO.cleanup()
+    
