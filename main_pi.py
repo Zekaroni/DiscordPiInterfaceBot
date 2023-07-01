@@ -7,7 +7,7 @@ ports = serial.tools.list_ports.comports()
 for port in ports:
     print("Available Port:", port.device)
 
-serial_port = '/dev/serial1'
+serial_port = '/dev/ttyAMA0'
 baud_rate = 9600
 
 try:
