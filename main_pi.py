@@ -1,8 +1,14 @@
 import serial
 import time
+import serial.tools.list_ports
+
+# Find the available serial ports
+ports = serial.tools.list_ports.comports()
+for port in ports:
+    print("Available Port:", port.device)
 
 # Define the serial port and baud rate
-serial_port = '/dev/serial1'  # Raspberry Pi's Serial1 port
+serial_port = '/dev/ttyS0'  # Raspberry Pi's default serial port
 baud_rate = 9600
 
 try:
