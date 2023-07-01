@@ -13,12 +13,18 @@ GPIO.setup(gpio_pin, GPIO.OUT)
 # Send data to Arduino
 data = b'H'
 
+GPIO.output(gpio_pin, 0)
+
+time.sleep(10)
+
 # Send each bit of the data sequentially
 for bit in data:
     print(bit)
     for i in range(8):
         GPIO.output(gpio_pin, bit & (1 << i))
         time.sleep(0.01)  # Adjust the delay as needed
+
+time.sleep(10)
 
 # Clean up the GPIO pin
 GPIO.cleanup()
