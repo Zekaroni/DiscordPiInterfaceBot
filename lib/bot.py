@@ -46,7 +46,7 @@ class DiscordBot:
                 raspPi.setup_pin(pin_number,output)
                 await ctx.send(f"Pin {pin_number} is now setup.")
             except Exception as error:
-                await ctx.send(f"{error}")
+                await ctx.send(f"Error: {error}")
 
         @self.bot.command(
             name="set_pin_high",
@@ -68,11 +68,11 @@ class DiscordBot:
                 raspPi.set_pin_high(pin_number)
                 await ctx.send(f"Pin {pin_number} is now HIGH.")
             except Exception as error:
-                await ctx.send(f"{error}")
+                await ctx.send(f"Error: {error}")
 
         @self.bot.command(
             name="set_pin_low",
-            description="Pulls the voltage low on opin specified",
+            description="Pulls the voltage low on the pin specified",
             scope=self.active_guilds,
             options = [
                 interactions.Option(
@@ -90,7 +90,7 @@ class DiscordBot:
                 raspPi.set_pin_low(pin_number)
                 await ctx.send(f"Pin {pin_number} is now LOW.")
             except Exception as error:
-                await ctx.send(f"{error}")
+                await ctx.send(f"Error: {error}")
         
         @self.bot.command(
             name="temps",
