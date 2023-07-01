@@ -5,7 +5,11 @@ serial_port = serial.Serial("/dev/ttyAMA0", baudrate=9600, timeout=1)
 
 # Send data to Arduino
 def send_data(data):
-    serial_port.write(data.encode())
+    try:
+        serial_port.write(data.encode())
+        print("Data sent successfully:", data)
+    except Exception as e:
+        print("Error sending data:", str(e))
 
 # Example usage
 send_data("Hello, Arduino!")
