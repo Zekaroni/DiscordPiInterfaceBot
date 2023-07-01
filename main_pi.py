@@ -1,11 +1,11 @@
 import serial
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 
 # Define the software serial pins
-rx_pin = 17  # GPIO17 (pin 11)
-tx_pin = 27  # GPIO27 (pin 13)
+rx_pin = 11
+tx_pin = 13
 
 # Set up the GPIO pins
 GPIO.setup(rx_pin, GPIO.IN)
@@ -32,4 +32,4 @@ except Exception as e:
 finally:
     # Clean up the GPIO pins
     GPIO.cleanup()
-    
+
