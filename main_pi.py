@@ -1,30 +1,11 @@
-import RPi.GPIO as GPIO
-import time
+import serial
 
-# Set up GPIO mode
-GPIO.setmode(GPIO.BOARD)
-
-# Define the GPIO pin (using physical pin numbers)
-gpio_pin = 11  # Pin 11 (GPIO17)
-
-# Set up the GPIO pin
-GPIO.setup(gpio_pin, GPIO.OUT)
+# Configure serial communication
+serial_port = serial.Serial("/dev/ttyAMA0", baudrate=9600, timeout=1)
 
 # Send data to Arduino
-data = b'H'
+def send_data(data):
+    serial_port.write(data.encode())
 
-GPIO.output(gpio_pin, 0)
-
-time.sleep(10)
-
-# Send each bit of the data sequentially
-for bit in data:
-    print(bit)
-    for i in range(8):
-        GPIO.output(gpio_pin, bit & (1 << i))
-        time.sleep(0.01)  # Adjust the delay as needed
-
-time.sleep(10)
-
-# Clean up the GPIO pin
-GPIO.cleanup()
+# Example usage
+send_data("Hello, Arduino!")
