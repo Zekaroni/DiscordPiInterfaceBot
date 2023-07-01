@@ -1,30 +1,34 @@
 import serial
-import time
-import serial.tools.list_ports
+import RPi.GPIO as GPIO
 
-# Find the available serial ports
-ports = serial.tools.list_ports.comports()
-for port in ports:
-    print("Available Port:", port.device)
+GPIO.setmode(GPIO.BCM)
 
-serial_port = '/dev/ttyAMA0'
-baud_rate = 9600
+# Define the software serial pins
+rx_pin = 17  # GPIO17 (pin 11)
+tx_pin = 27  # GPIO27 (pin 13)
+
+# Set up the GPIO pins
+GPIO.setup(rx_pin, GPIO.IN)
+GPIO.setup(tx_pin, GPIO.OUT)
+
+# Define the serial port and baud rate
+serial_port = serial.Serial(port='/dev/ttyAMA0', baudrate=9600)
 
 try:
-    # Initialize the serial connection
-    ser = serial.Serial(serial_port, baud_rate, timeout=1)
+    # Open the serial port
+    serial_port.open()
     print("Serial connection established!")
-
-    # Wait for the Arduino to reset (if necessary)
-    time.sleep(2)
 
     # Send data to Arduino
     data = 'H'
-    ser.write(data.encode())
+    serial_port.write(data.encode())
     print("Data sent to Arduino:", data)
 
-    # Close the serial connection
-    ser.close()
+    # Close the serial port
+    serial_port.close()
     print("Serial connection closed.")
 except serial.SerialException as e:
     print("Serial connection failed:", str(e))
+finally:
+    # Clean up the GPIO pins
+    GPIO.cleanup()
