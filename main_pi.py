@@ -15,6 +15,7 @@ def send_data(data):
         print("Data sent successfully:", byte_data)
     except Exception as e:
         print("Error sending data:", str(e))
+    time.sleep(0.01)
 
 
 # Example usage
