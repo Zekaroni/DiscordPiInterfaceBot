@@ -1,7 +1,7 @@
 import serial
 
 # Configure serial communication
-serial_port = serial.Serial("/dev/ttyAMA0", baudrate=9600, timeout=1)
+serial_port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
 
 # Send data to Arduino
 def send_data(data):
