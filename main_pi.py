@@ -1,20 +1,22 @@
 import serial
+import struct
 import time
 
 # Configure serial communication
 serial_port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
 
-# Send data to Arduino
 def send_data(data):
     try:
-        byte_data = bytes(data)
-        serial_port.write(byte_data)
-        print("Data sent successfully:", byte_data)
+        # Pack the four bytes into a 32-bit value
+        packed_data = struct.pack('I', data)
+
+        # Send the packed data to the Arduino
+        serial_port.write(packed_data)
+        print("Data sent successfully:", packed_data)
     except Exception as e:
         print("Error sending data:", str(e))
     time.sleep(0.01)
 
-
 # Example usage
 if __name__ == "__main__":
-    send_data([0x3E,0x00, 0x00,0x00,])
+    send_data(0x3E000000)
