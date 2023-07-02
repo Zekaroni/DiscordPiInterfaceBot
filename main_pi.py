@@ -8,7 +8,7 @@ serial_port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
 def send_data(data):
     try:
         # Pack the four bytes into a 32-bit value in big-endian format
-        packed_data = struct.pack('<I', data)
+        packed_data = struct.pack('>I', data)
 
         # Send the packed data to the Arduino
         serial_port.write(packed_data)
@@ -19,4 +19,4 @@ def send_data(data):
 
 # Example usage
 if __name__ == "__main__":
-    send_data(0x3E000000)
+    send_data(0xFFFFFFFF)
