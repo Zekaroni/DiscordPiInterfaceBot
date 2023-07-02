@@ -11,7 +11,7 @@ def send_data(data):
         # packed_data = struct.pack('I', data)
 
         # Send the packed data to the Arduino
-        serial_port.write(data)
+        serial_port.write(bytes(data))
         print("Data sent successfully:", data)  # Convert packed_data to hex string
     except Exception as e:
         print("Error sending data:", str(e))
