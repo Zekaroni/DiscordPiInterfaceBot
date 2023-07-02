@@ -16,4 +16,4 @@ def send_data(data):
         print("Error sending data:", str(e))
 
 # Example usage
-send_data(0xFFFFFFFF)
+send_data(0xFFFFFFF)
