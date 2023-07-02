@@ -7,7 +7,6 @@ serial_port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
 def send_data(data):
     if isinstance(data, int):
         print([data])
-        print(bytes([data]))
         data = bytes([data])  # Convert integer to byte
     elif isinstance(data, str):
         data = data.encode()  # Convert string to byte
@@ -18,4 +17,4 @@ def send_data(data):
         print("Error sending data:", str(e))
 
 # Example usage
-send_data(2147483647)
+send_data(255)
