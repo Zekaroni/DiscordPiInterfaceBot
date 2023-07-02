@@ -7,7 +7,7 @@ serial_port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
 # Send data to Arduino
 def send_data(data):
     if isinstance(data, int):
-        byte_data = data.to_bytes(2, byteorder='big')  # Convert integer to 2-byte representation
+        byte_data = data.to_bytes(4, byteorder='big')  # Convert integer to 2-byte representation
     elif isinstance(data, str):
         byte_data = data.encode()  # Convert string to byte
     try:
