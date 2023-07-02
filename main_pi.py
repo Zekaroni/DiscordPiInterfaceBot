@@ -1,5 +1,4 @@
 import serial
-import struct
 import time
 
 # Configure serial communication
@@ -7,12 +6,12 @@ serial_port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
 
 def send_data(data):
     try:
-        # Send the four bytes individually to the Arduino
-        serial_port.write((data >> 24) & 0xFF)
-        serial_port.write((data >> 16) & 0xFF)
-        serial_port.write((data >> 8) & 0xFF)
-        serial_port.write(data & 0xFF)
-        print("Data sent successfully:", hex(data))
+        # Create a bytearray with the four bytes in little-endian order
+        byte_data = bytearray([data & 0xFF, (data >> 8) & 0xFF, (data >> 16) & 0xFF, (data >> 24) & 0xFF])
+
+        # Send the bytearray to the Arduino
+        serial_port.write(byte_data)
+        print("Data sent successfully:", byte_data)
     except Exception as e:
         print("Error sending data:", str(e))
     time.sleep(0.01)
