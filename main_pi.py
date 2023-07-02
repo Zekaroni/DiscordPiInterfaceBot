@@ -14,4 +14,5 @@ def send_data(data):
     time.sleep(0.3)
 
 # Example usage
-send_data(1024)
+if __name__ == "__main__":
+    send_data(1024)
