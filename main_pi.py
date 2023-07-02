@@ -20,4 +20,4 @@ def send_data(data):
 # Example usage
 if __name__ == "__main__":
     send_data(0x01020304)
-    send_data(0b01000001000100010000100100000101)
+    send_data(0x21110905)
