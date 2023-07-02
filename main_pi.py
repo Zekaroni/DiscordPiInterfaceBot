@@ -1,5 +1,5 @@
 import serial
-import time
+from time import sleep
 
 # Configure serial communication
 serial_port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
@@ -12,6 +12,7 @@ def send_data(data):
         print("Data sent successfully:", data)
     except Exception as e:
         print("Error sending data:", str(e))
+    sleep(0.01)
 
 # Example usage
 if __name__ == "__main__":
