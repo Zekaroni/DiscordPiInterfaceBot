@@ -7,12 +7,12 @@ serial_port = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=1)
 
 def send_data(data):
     try:
-        # # Pack the four bytes into a 32-bit value
-        # packed_data = struct.pack('I', data)
+        # Pack the four bytes into a 32-bit value
+        packed_data = struct.pack('I', data)
 
         # Send the packed data to the Arduino
-        serial_port.write(bytes(data))
-        print("Data sent successfully:", data)  # Convert packed_data to hex string
+        serial_port.write(packed_data)
+        print("Data sent successfully:", packed_data.hex())  # Convert packed_data to hex string
     except Exception as e:
         print("Error sending data:", str(e))
     time.sleep(0.01)
