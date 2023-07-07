@@ -33,15 +33,35 @@ if __name__ == "__main__":
     print("Now turning on motor 1, none others should turn on.")
     SendClient.send_data(0b1010100011111111) # Max speed on motor 1
     sleep(5)
-    print("Now turning off motor 1. (NOTE: there should be no humming from the motor)")
-    SendClient.send_data(0b1010100000000000) # Motor 1 off
-    sleep(2)
 
     print("Now turning on motor 2, none others should turn on.")
     SendClient.send_data(0b1010101011111111) # Max speed on motor 2
     sleep(5)
+
+    print("Now turning on motor 3, none others should turn on.")
+    SendClient.send_data(0b1010110011111111) # Max speed on motor 2
+    sleep(5)
+
+
+    print("Now turning on motor 4, none others should turn on.")
+    SendClient.send_data(0b1010111011111111) # Max speed on motor 2
+    sleep(5)
+
+    print("Now turning off motor 1. (NOTE: there should be no humming from the motor)")
+    SendClient.send_data(0b1010100000000000) # Motor 1 off
+    sleep(2)
+
     print("Now turning off motor 2. (NOTE: there should be no humming from the motor)")
     SendClient.send_data(0b1010101000000000) # Motor 2 off
     sleep(2)
+
+    print("Now turning off motor 3. (NOTE: there should be no humming from the motor)")
+    SendClient.send_data(0b1010110000000000) # Motor 2 off
+    sleep(2)
+
+    print("Now turning off motor 4. (NOTE: there should be no humming from the motor)")
+    SendClient.send_data(0b1010111000000000) # Motor 2 off
+    sleep(2)
+
 
     print("Testing has finished")
