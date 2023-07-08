@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     for i in range(255):
         SendClient.send_data(0b1010101000000000+i)
-        sleep(0.0)
+        sleep(0.01)
     for i in range(255):
         SendClient.send_data(0b1010101000000000+(255-i))
         sleep(0.01)
