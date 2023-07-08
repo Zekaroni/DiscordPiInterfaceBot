@@ -24,13 +24,10 @@ class SerialOutput:
 if __name__ == "__main__":
     SendClient = SerialOutput()
 
-    for i in range(255):
-        SendClient.send_data(0b1010111000000000+i)
-        sleep(0.03)
-    for i in range(255):
-        SendClient.send_data(0b1010111000000000+(255-i))
-        sleep(0.03)
-    SendClient.send_data(0b1010111000000000)
+    bits = 0b1010111000000000
+    SendClient.send_data(bits+255)
+    sleep(3)
+    SendClient.send_data(bits)
 
     # print("Now sending data with wrong verification:")
     # SendClient.send_data(0b1011100011111111) # Setting motor 1 to max speed, but should fail
