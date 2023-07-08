@@ -26,7 +26,11 @@ if __name__ == "__main__":
 
     SendClient.send_data(0b1010100011111111)
     sleep(5)
+    # SendClient.send_data(0b1010100000000000)
+    SendClient.send_data(0b1010100111111111)
+    sleep(5)
     SendClient.send_data(0b1010100000000000)
+
 
     # print("Now sending data with wrong verification:")
     # SendClient.send_data(0b1011100011111111) # Setting motor 1 to max speed, but should fail
