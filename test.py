@@ -24,7 +24,7 @@ class SerialOutput:
 if __name__ == "__main__":
     SendClient = SerialOutput()
 
-    bits = 0b1010111000000000
+    bits = 0b1010111100000000
     SendClient.send_data(bits+255)
     sleep(3)
     SendClient.send_data(bits)
